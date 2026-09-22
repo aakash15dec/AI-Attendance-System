@@ -50,6 +50,31 @@ AI-Attendance-System/
 ├── .gitignore
 └── README.md
 ```
+## 📸 Application Screenshots
+
+### 🏠 Home Page
+![Home Page](screenshots/home-page.png)
+
+### 👨‍🎓 Student Face ID Login
+![Student Face ID Login](screenshots/student-faceidlogin%20dash.png)
+
+### 📚 Student Subject Enrollment
+![Student Subject Enrollment](screenshots/student-joinsubj.png)
+
+### 📊 Student Dashboard
+![Student Dashboard](screenshots/studentdashenrooled.png)
+
+### 👨‍🏫 Teacher Login
+![Teacher Login](screenshots/teacher-login.png)
+
+### 📝 Teacher Registration
+![Teacher Registration](screenshots/teacher-register.png)
+
+### 🔐 Teacher Username
+![Teacher Username](screenshots/teacher-username.png)
+
+### 📊 Teacher Dashboard
+![Teacher Dashboard](screenshots/teacher-dashboard.png)
 
 ## ⚙️ Installation
 
