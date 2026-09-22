@@ -7,19 +7,33 @@ def style_background_home():
     st.markdown("""
         <style>
 
-                .stApp {
-                    background: #5865F2 !important;
-                }
+            .stApp {
+                background: #5865F2 !important;
+            }
 
-                .stApp div[data-testid="stColumn"]{
-                    background-color:#E0E3FF !important;
-                    padding:2.5rem !important;
-                    border-radius: 5rem !important;
-                    }
-        </style>  
+            .stApp div[data-testid="stColumn"] {
+                background-color: #E0E3FF !important;
+                padding: 2.5rem !important;
+                border-radius: 5rem !important;
+            }
 
-                """
-            ,unsafe_allow_html=True)
+            /* Home cards headings */
+            .stApp div[data-testid="stColumn"] h1,
+            .stApp div[data-testid="stColumn"] h2,
+            .stApp div[data-testid="stColumn"] h3,
+            .stApp div[data-testid="stColumn"] h4 {
+                color: #111111 !important;
+            }
+
+            /* Keep button text white */
+            .stApp div[data-testid="stColumn"] button,
+            .stApp div[data-testid="stColumn"] button p,
+            .stApp div[data-testid="stColumn"] button span {
+                color: white !important;
+            }
+
+        </style>
+    """, unsafe_allow_html=True)
     
 
 def style_background_dashboard():
@@ -27,14 +41,32 @@ def style_background_dashboard():
     st.markdown("""
         <style>
 
-                .stApp {
-                    background: #E0E3FF !important;
-                }
+            .stApp {
+                background: #E0E3FF !important;
+            }
 
-        </style>  
+            .stApp h1,
+            .stApp h2,
+            .stApp h3,
+            .stApp h4,
+            .stApp h5,
+            .stApp h6,
+            .stApp p,
+            .stApp label,
+            .stApp span,
+            .stApp div[data-testid="stMarkdownContainer"] {
+                color: #111111 !important;
+            }
 
-                """
-            ,unsafe_allow_html=True)
+            /* Keep button text white */
+            .stApp button,
+            .stApp button p,
+            .stApp button span {
+                color: white !important;
+            }
+
+        </style>
+    """, unsafe_allow_html=True)
     
 
     
