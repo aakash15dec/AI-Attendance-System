@@ -75,33 +75,53 @@ def train_classifier():
 def predict_attendance(class_image_np):
     encodings = get_face_embeddings(class_image_np)
 
-    detected_student = {}
+    detected_students = {}
 
+    student_db = get_all_students()
 
-    model_data = get_trained_model()
+    if not student_db:
+        return detected_students, [], len(encodings)
 
-    if not model_data:
-        return detected_student, [], len(encodings)
-    
-    clf = model_data['clf']
-    X_train = model_data['X']
-    y_train = model_data['y']
+    stored_faces = []
 
-    all_students = sorted(list(set(y_train)))
+    for student in student_db:
+        embedding = student.get('face_embedding')
+
+        if embedding:
+            stored_faces.append({
+                "student_id": int(student["student_id"]),
+                "embedding": np.array(embedding)
+            })
+
+    if not stored_faces:
+        return detected_students, [], len(encodings)
+
+    all_students = [
+        student["student_id"] for student in stored_faces
+    ]
+
+    resemblance_threshold = 0.50
 
     for encoding in encodings:
-        if len(all_students)>= 2:
-            predicted_id= int(clf.predict([encoding])[0])
-        else:
-            predicted_id = int(all_students[0])
 
-        student_embedding = X_train[y_train.index(predicted_id)]
+        best_student_id = None
+        best_distance = float("inf")
 
-        best_match_score = np.linalg.norm(student_embedding - encoding)
+        for student in stored_faces:
 
-        resemblance_threshold = 0.6
+            distance = np.linalg.norm(
+                student["embedding"] - encoding
+            )
 
-        if best_match_score <= resemblance_threshold:
-            detected_student[predicted_id] = True
-    return detected_student, all_students, len(encodings)
+            if distance < best_distance:
+                best_distance = distance
+                best_student_id = student["student_id"]
+
+        if (
+            best_student_id is not None
+            and best_distance <= resemblance_threshold
+        ):
+            detected_students[best_student_id] = True
+
+    return detected_students, all_students, len(encodings)
 
